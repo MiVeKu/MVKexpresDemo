@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+// database connection to MongoDb in asyncronous function, to circumvent problems arising from the asyncrous javascript syntax.
 module.exports = async function connection() {
     try {
         const connectionParams = {
