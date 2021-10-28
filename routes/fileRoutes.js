@@ -1,6 +1,6 @@
 const uploadStorage = require('../middleware/upload');
 const express = require('express');
-const connection = require('./db');
+const connection = require('../db');
 const mongoose = require('mongoose');
 const Grid = require('gridfs-stream');
 const router = express.Router();
@@ -9,14 +9,16 @@ const router = express.Router();
 /*TODO add routes starting with post, get, delete
 use your own + from youtube https://www.youtube.com/watch?v=XCRUzPi0X0Q and https://www.youtube.com/watch?v=OvbRLY1QRIk
 */
-const conn = connection();
-
+/*const conn = mongoose.createConnection(process.env.DB, {useNewUrlParser: true,
+    useUnifiedTopology: true});*/
 let gfs;
+connection();
+const conn = mongoose.connection;
 
-conn.once('open', ()=>{
-    gfs = new mongoose.mongo.GridFSBucket(conn.db), {
-        bucketName: 'images'
-    }
+conn.once('open', () => {
+    gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+        bucketName: 'upload',
+    });
 });
 
 function uploadMW(req, res, next) {
@@ -53,7 +55,7 @@ const deleteImage = id => {
 
 router.get('/:id', ({params: {id}}, res )=>{
     if (!id || id === 'undefined') return res.status(400).send('No image id');
-    const _id = new.mongoose.Types.ObjectId(id);
+    const _id = new mongoose.Types.ObjectId(id);
     gfs.find({_id}).toArray((err, files)=> {
         if (!files || files.lenght === 0)
          return res.status(400).send('no files exist');

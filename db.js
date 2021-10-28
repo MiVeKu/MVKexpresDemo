@@ -7,7 +7,7 @@ module.exports = async function connection() {
             useUnifiedTopology: true
             // as stated in Mongoose 6.0.12 docs, the above are always used, but still included here for my own understanding
         }
-        await mongoose.connect(process.env.DB, connectionParams)
+        await mongoose.createConnection(process.env.DB, connectionParams)
         console.log("Connected to database.")
     } catch (error) {
         console.log(error);

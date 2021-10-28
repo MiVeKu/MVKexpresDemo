@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 // requiring enviromental parameters'
-const connection = require('./db');
+//const connection = require('./db');
 // requiring database connection
 var express = require('express');
 var path = require('path');
@@ -14,7 +14,7 @@ var indexRouter = require('./routes/index');
 var imageRouter = require('./routes/fileRoutes');
 // requiring routes
 const app = express();
-connection();
+//connection();
 // initilising express server
 
 app.use(logger('dev'));

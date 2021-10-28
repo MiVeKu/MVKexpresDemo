@@ -1,7 +1,7 @@
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage')
+const {GridFsStorage} = require('multer-gridfs-storage')
 //var Grid = require('gridfs-stream');
-const crypto = reguire('crypto');
+const crypto = require('crypto');
 
 const storage = new GridFsStorage({
     // initialising new GridFsStorage instance to create a model for saving information to MongoDb.
