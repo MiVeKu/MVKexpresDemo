@@ -11,11 +11,12 @@ const cors = require('cors');
 // requiring basic modules for application.
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var imageRouter = require('./routes/fileRoutes');
 // requiring routes
 const app = express();
 connection();
 // initilising express server
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,7 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 // intialising modules for use in application
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/upload', imageRouter);
+
 // intialising routes for use in application
+
 module.exports = app;
 // exporting functionality

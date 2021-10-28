@@ -26,7 +26,7 @@ const storage = new GridFsStorage({
     }
 });
 
-const upload = multer({
+const uploadStorage = multer({
     // calling multer to save information to MongoDb with the model specified in storage and parameters from checkFiletype.
     storage,
     limits: {fileSize: 40000000},
@@ -44,4 +44,4 @@ function checkFiletype(file, cb) {
     cb('filetype');
 }
 
-module.exports = upload;
+module.exports = uploadStorage;
