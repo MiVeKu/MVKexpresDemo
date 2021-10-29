@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 // requiring enviromental parameters'
-//const connection = require('./db');
+const connection = require('./db');
 // requiring database connection
 var express = require('express');
 var path = require('path');
@@ -14,8 +14,26 @@ var indexRouter = require('./routes/index');
 var imageRouter = require('./routes/fileRoutes');
 // requiring routes
 const app = express();
-//connection();
+connection();
 // initilising express server
+
+/* async function connected() {
+    try {
+        connection();
+        const conn = mongoose.connection;
+
+    await conn.once('open', () => {
+        gfs = new mongoose.mongo.GridFSBucket(conn.db, {
+            bucketName: 'upload'
+        });
+        console.log("Connection to db open.")
+    });
+    } catch (error) {
+        console.log(cerror);
+        console.log("Could not open connection to database")
+    }
+    
+};*/
 
 app.use(logger('dev'));
 app.use(express.json());

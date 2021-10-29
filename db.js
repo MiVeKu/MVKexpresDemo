@@ -13,4 +13,4 @@ module.exports = async function connection() {
         console.log(error);
         console.log("Could not connect to database.")
     }
-}
+};

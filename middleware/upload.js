@@ -1,3 +1,4 @@
+const path = require('path');
 const multer = require('multer');
 const {GridFsStorage} = require('multer-gridfs-storage')
 //var Grid = require('gridfs-stream');
@@ -42,6 +43,6 @@ function checkFiletype(file, cb) {
     const mimetype = filetypes.test(file.mimetype);
     if(mimetype && extname) return cb(null, true);
     cb('filetype');
-}
+};
 
 module.exports = uploadStorage;
