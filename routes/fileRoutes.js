@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 // const connected = require('../app');
-const Grid = require('gridfs-stream');
+// const Grid = require('gridfs-stream');
 const router = express.Router();
 
 
@@ -61,6 +61,19 @@ const deleteImage = id => {
         if (err) return res.status(500).send('image deletion error.');
     })
 }
+
+router.get('/all', ({params: {id}}, res )=>{
+    const _id = new mongoose.Types.ObjectId(id);
+    gfs.find().toArray((err, files)=> {
+        if (!files || files.lenght === 0) {
+            return res.status(400).send('no files exist.');
+        } else if (err) {
+            console.log(err);
+        }
+        console.log("user in /all route.");
+        return res.json(files);
+    });
+});
 
 router.get('/:id', ({params: {id}}, res )=>{
     if (!id || id === 'undefined') return res.status(400).send('No image id.');
