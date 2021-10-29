@@ -49,29 +49,38 @@ router.post('/upload/', uploadMW, async(req, res)=> {
     const {id} = file;
     if(file.size > 8000000) {
         deleteImage(id);
-        return res.status(400).send('File may not exceed 8 mb');
+        return res.status(400).send('File may not exceed 8 mb.');
     }
     console.log('uploaded file: ', file);
     return res.send(file.id);
 });
 
 const deleteImage = id => {
-    if (!id || id === 'undefined') return res.status(400).send('no image id');
-    const _id = new mongoose.Types.objectiveId(id);
+    if (!id || id === 'undefined') return res.status(400).send('no image id.');
+    const _id = new mongoose.Types.ObjectId(id);
     gfs.delete(_id, err => {
-        if (err) return res.status(500).send('image deletion error');
+        if (err) return res.status(500).send('image deletion error.');
     })
 }
 
 router.get('/:id', ({params: {id}}, res )=>{
-    if (!id || id === 'undefined') return res.status(400).send('No image id');
+    if (!id || id === 'undefined') return res.status(400).send('No image id.');
     const _id = new mongoose.Types.ObjectId(id);
     gfs.find({_id}).toArray((err, files)=> {
         if (!files || files.lenght === 0)
-         return res.status(400).send('no files exist');
+         return res.status(400).send('no files exist.');
         gfs.openDownloadStream(_id).pipe(res);
         console.log("Streaming image to user.");
     });
+});
+
+router.get('/delete/:id', ({params: {id}}, res )=>{
+    if (!id || id === 'undefined') return res.status(400).send('No image id.');
+    const _id = new mongoose.Types.ObjectId(id);
+    console.log('Trying to deleting image '+id+'.');
+    deleteImage(id);
+    console.log('Image deleted');
+    return res.status(400).send('Image deleted.');
 });
 
 module.exports = router;
