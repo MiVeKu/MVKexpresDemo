@@ -1,11 +1,10 @@
 const uploadStorage = require('../middleware/upload');
 const express = require('express');
-const connection = require('../db');
+//const connection = require('../db');
 const mongoose = require('mongoose');
 const multer = require('multer');
 // const connected = require('../app');
 const Grid = require('gridfs-stream');
-const { MulterError } = require('multer');
 const router = express.Router();
 
 
