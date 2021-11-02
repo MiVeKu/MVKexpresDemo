@@ -12,10 +12,11 @@ html
       form#form(action='/upload/', method='POST', enctype="multipart/form-data")
        div.form-group
               label='Choose image to Upload'
-              input.form-control(type='file', name='file')
+              input.form-control(type='file', name='image')
               br
               button.btn.btn-outline-primary(type='submit') Upload to database
               br
+      p Status
       br        
     .container-sm.p-5.my-5.border.text-center 
       h3 Images in database
@@ -24,7 +25,7 @@ html
           each file in files 
               li.list-group-item.list-group-item-action.text-center
                   h5=file.filename +' / '                                          
-                    a.text-decoration-none(href='/stream/' +file.filename) Stream
+                    a.text-decoration-none(href='/stream/' +file._id) Stream
                     |  / 
                     a.text-decoration-none(href='/delete/' +file._id) Delete
       br
