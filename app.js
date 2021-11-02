@@ -10,7 +10,7 @@ var logger = require('morgan');
 const cors = require('cors');
 // requiring basic modules for application.
 
-var indexRouter = require('./routes/index');
+//var indexRouter = require('./routes/index');
 var imageRouter = require('./routes/fileRoutes');
 // requiring routes
 const app = express();
@@ -39,11 +39,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+app.set('view engine', 'pug');
 // intialising modules for use in application
-app.use('/', indexRouter);
-app.use('/upload', imageRouter);
+//app.use('/', indexRouter);
+app.use('/', imageRouter);
 
 // intialising routes for use in application
 

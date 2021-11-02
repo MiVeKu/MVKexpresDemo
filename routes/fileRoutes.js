@@ -64,7 +64,7 @@ const deleteImage = id => {
     })
 }
 
-router.get('/all', ({params: {id}}, res )=>{
+router.get('/', ({params: {id}}, res )=>{
     const _id = new mongoose.Types.ObjectId(id);
     gfs.find().toArray((err, files)=> {
         if (!files || files.lenght === 0) {
@@ -73,11 +73,12 @@ router.get('/all', ({params: {id}}, res )=>{
             console.log(err);
         }
         console.log("user in /all route.");
-        return res.json(files);
+        //return res.json(files);
+        return res.render('index', { title: 'Images', files: files });
     });
 });
 
-router.get('/:id', ({params: {id}}, res )=>{
+router.get('/stream/:id', ({params: {id}}, res )=>{
     if (!id || id === 'undefined') return res.status(400).send('No image id.');
     const _id = new mongoose.Types.ObjectId(id);
     gfs.find({_id}).toArray((err, files)=> {
