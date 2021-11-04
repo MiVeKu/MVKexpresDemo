@@ -37,12 +37,12 @@ ImageDb uses:
 ### Main view and Functionality
 In the view there is a filemanager instance for uploading images and a list of images currently uploaded to database. The application's view's appearance can change according to the state of the database, for example when there are files in the database:
 
-![alt text](https://github.com/MiVeKu/FileServer/blob/main/images/ViewExample.png "The main view")
+![alt text](https://github.com/MiVeKu/MVKexpresDemo/blob/main/images/ViewExample.png "The main view")
 
 ### Anomalies
 The application doesn't have functionality to show status reports or errors in the view, in wich case the message is shown in an otherwice empty html page: 
 
-![alt text](https://github.com/MiVeKu/FileServer/blob/main/images/ViewExample2.png "a report")
+![alt text](https://github.com/MiVeKu/MVKexpresDemo/blob/main/images/ViewExample2.png "a report")
 
 to return to the index navigate back to **localhost:3000**
 
