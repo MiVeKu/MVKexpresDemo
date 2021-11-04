@@ -4,7 +4,8 @@
 
 ## Description
 
-### MVKexpresDemo or ImageDb is a NodeJs application for uploading files to MongoDB using Multer GridFS Collections. The application has functionality to filter upcoming files. Currently the users can upload images, stream them for viewing and delete files from the database. The applications interface is a single view implemented with Pug viewengine.
+### MVKexpresDemo or ImageDb is a NodeJs application for uploading files to MongoDB using Multer GridFS Collections.
+The application has functionality to filter upcoming files. Currently the users can upload images, stream them for viewing and delete files from the database. The applications interface is a single view implemented with Pug viewengine.
 
 ImageDb uses:
 * MonogoDB, a NoSQL database used to store data
@@ -25,10 +26,14 @@ ImageDb uses:
 ### 4. Move into the project folder using command line or file explorer
    Open command line and use command **cd C:\Example\Folder\nodejs-harjoitusTYöCop\** to move to the project folder.
 ### 5. Install dependencies and setting enviroment variables
-   **npm install**. Remember to create .env file with variables specified in .envExample.
+```bash
+  npm install
+```
+   Remember to create .env file with variables specified in .envExample.
 ### 6. Start the server
-   **npm start**
-   
+```bash
+  npm start
+```
    Now ImageDb can be accessed with a internet browser in **localhost:3000**
 
 
