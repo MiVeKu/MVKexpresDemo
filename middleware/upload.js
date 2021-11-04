@@ -1,13 +1,12 @@
 const path = require('path');
 const multer = require('multer');
-const {GridFsStorage} = require('multer-gridfs-storage')
-//var Grid = require('gridfs-stream');
+const { GridFsStorage } = require('multer-gridfs-storage')
 const crypto = require('crypto');
 
 const storage = new GridFsStorage({
     // initialising new GridFsStorage instance to create a model for saving information to MongoDb.
     url: process.env.DB,
-    options: {useNewUrlParser: true, useUnifiedTopology: true},
+    options: { useNewUrlParser: true, useUnifiedTopology: true },
     file: (req, file) => {
         return new Promise((resolve, reject) => {
             crypto.randomBytes(16, (err, buf) => {
@@ -17,6 +16,8 @@ const storage = new GridFsStorage({
                 }
                 const filename = buf.toString('hex') + path.extname(file.originalname);
                 // forming the new name for the uploaded file and allocating bucket name.
+                // parameters specified here will be used in fileRoutes.js to refer to 
+                // this specific database instance.
                 const fileInfo = {
                     filename: filename,
                     bucketName: 'upload'
@@ -30,8 +31,8 @@ const storage = new GridFsStorage({
 const uploadStorage = multer({
     // calling multer to save information to MongoDb with the model specified in storage and parameters from checkFiletype.
     storage,
-    limits: {fileSize: 40000000},
-    fileFilter: function(req, file, cb) {
+    limits: { fileSize: 40000000 },
+    fileFilter: function (req, file, cb) {
         checkFiletype(file, cb)
     }
 });
@@ -41,7 +42,7 @@ function checkFiletype(file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
-    if(mimetype && extname) return cb(null, true);
+    if (mimetype && extname) return cb(null, true);
     cb('filetype');
 };
 

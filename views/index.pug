@@ -6,47 +6,59 @@ html
     link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css' rel='stylesheet')
     script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js')
   body.container.text-center
+    //-
+      pug file for Pug viewengine. Main benefits are simpler syntax for writing html aswell as ability
+      to have javascript natively in the html and pass JSON objects straight to view. file has been styled with bootstrap.
     .container-sm.p-5.my-5.bg-dark.text-white
-      h2 ImageDB
+      // div container for filesystem instance form.
+      h1 ImageDB
       .container-sm.p-2
       form#form(action='/upload/', method='POST', enctype="multipart/form-data")
-       div.form-group
+       div.form-group.row
+            div.col-xs-4
               label='Choose image to Upload'
               input.form-control(type='file', name='image')
               br
               button.btn.btn-outline-primary(type='submit') Upload to database
               br
-      p Status
-      br        
+      br
+  if mark === 'images gotten'        
     .container-sm.p-5.my-5.border.text-center 
-      h3 Images in database
-      br
-      ul.list-group.list-group-flush.text-center 
-          each file in files 
-              li.list-group-item.list-group-item-action.text-center
-                  h5=file.filename +' / '                                          
-                    a.text-decoration-none(href='/stream/' +file._id) Stream
-                    |  / 
-                    a.text-decoration-none(href='/delete/' +file._id) Delete
-      br
-      br
-      button.btn.btn-outline-primary#myBtn(onclick='topFunction()' title='Go to top') Top
-      script.
-        //Get the button
-        var mybutton = document.getElementById("myBtn");
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-        function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-        } else {
-        mybutton.style.display = "none";
-        }
-        }
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-        }
+        //- 
+          div container for displayin images in database. if clause containing the div gets information passed
+          from fileRouter to change the current view. If database contains files, the json object is passed to
+          be printed as a unordered list with the specified stylings and parameters below. All specified func-
+          tionality can be written as basic javascript.
+        h3 Images in Database
+        br
+        ul.list-group.list-group-flush.text-center 
+            each file in files 
+                li.list-group-item.list-group-item-action.text-center
+                    h5=file.filename +' / '                                          
+                      a.text-decoration-none(href='/stream/' +file._id) Stream
+                      |  / 
+                      a.text-decoration-none(href='/delete/' +file._id) Delete
+        br
+        br
+        button.btn.btn-outline-primary.text-center#myBtn(onclick='topFunction()' title='Go to top') Top
+        script.
+          //Get the button
+          var mybutton = document.getElementById("myBtn");
+          // When the user scrolls down 40px from the top of the document, show the button
+          window.onscroll = function() {scrollFunction()};
+          function scrollFunction() {
+          if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+          mybutton.style.display = "block";
+          } else {
+          mybutton.style.display = "none";
+          }
+          }
+          // When the user clicks on the button, scroll to the top of the document
+          function topFunction() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+          }
+  else
+    h3 No images in Database, start by Uploading some above!
 
     
