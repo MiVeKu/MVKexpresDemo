@@ -4,7 +4,7 @@
 
 ## Description
 
-### MVKexpresDemo or ImageDb is a NodeJs application for uploading files to MongoDB using Multer GridFS Collections.
+### MVKexpresDemo or ImageDb is a NodeJs application for uploading files to MongoDB using Multer GridFS Bucket.
 The application has functionality to filter upcoming files. Currently the users can upload images, stream them for viewing and delete files from the database. The applications interface is a single view implemented with Pug viewengine.
 
 ImageDb uses:
